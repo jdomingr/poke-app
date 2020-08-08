@@ -1,26 +1,43 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
+import { fetchPokemon } from './api/fetchPokemon';
+import { PokeCard } from './components/PokeCard';
 
 function App() {
+
+  const [name, setName] = useState('');
+  const [pokemon, setPokemon] = useState(null);
+
+  const handleInputChange = ( { target } ) => {
+    setName(target.value);
+  }
+
+  const handleSubmit = async(e) => {
+    e.preventDefault();
+    const result = await fetchPokemon(name);
+    setPokemon(result)
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    
+      <div className="container">
+        <h1>Bienvenido</h1>
+        <hr />
+        <form onSubmit = { handleSubmit }>
+          <div className="form-group">
+           <input type="text" className="form-control" name="name" value = { name } onChange={ handleInputChange } placeholder="Pokémon"/>
+          </div>
+          <button type="submit" className="btn btn-outline-primary">
+            Buscar 
+          </button>
+        </form>
+
+        <hr/>
+        
+        <PokeCard pokemon={pokemon}/>
+
+      </div >
+    
+    );
 }
 
 export default App;
