@@ -2,11 +2,13 @@ import React, { useState } from 'react';
 import './App.css';
 import { fetchPokemon } from './api/fetchPokemon';
 import { PokeCard } from './components/PokeCard';
+import { SpinnerLoading } from './components/SpinnerLoading';
 
 function App() {
 
   const [name, setName] = useState('');
-  const [pokemon, setPokemon] = useState(null);
+  const [pokemon, setPokemon] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const handleInputChange = ( { target } ) => {
     setName(target.value);
@@ -14,15 +16,19 @@ function App() {
 
   const handleSubmit = async(e) => {
     e.preventDefault();
+    setLoading(true);
     const result = await fetchPokemon(name);
-    setPokemon(result)
+    if(result){
+      setPokemon(result);
+      setLoading(false);
+    }
   }
   return (
     
       <div className="container">
         <h1>Bienvenido</h1>
         <hr />
-        <form onSubmit = { handleSubmit }>
+        <form className="container-form" onSubmit = { handleSubmit }>
           <div className="form-group">
            <input type="text" className="form-control" name="name" value = { name } onChange={ handleInputChange } placeholder="Pokémon"/>
           </div>
@@ -31,8 +37,7 @@ function App() {
           </button>
         </form>
 
-        <hr/>
-        
+        { loading && <SpinnerLoading />}
         <PokeCard pokemon={pokemon}/>
 
       </div >

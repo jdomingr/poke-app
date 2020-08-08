@@ -1,0 +1,17 @@
+.container-form {
+    align-content: center;
+    background-color: azure;
+    border: 1px solid;
+    margin: 50px;
+    padding: 30px;
+}
+
+.container-card {
+    align-content: center;
+    margin: 50px;
+    padding: 30px; 
+}
+
+.container-spinner{
+    align-content: center;
+}
