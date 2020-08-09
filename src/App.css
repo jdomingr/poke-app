@@ -1,9 +1,12 @@
 .container-form {
     align-content: center;
     background-color: azure;
-    border: 1px solid;
-    margin: 50px;
+    border: 1px solid rgba(0, 0, 0, 0.125);
     padding: 30px;
+    border-radius: 0.125rem;
+    box-shadow: 0 1rem 1rem -0.75rem rgba(0, 0, 0, 0.125);
+    position: relative;
+    overflow: hidden;
 }
 
 .container-card {
@@ -13,5 +16,11 @@
 }
 
 .container-spinner{
-    align-content: center;
+    width: 5%;
+    margin: auto;
+}
+
+.title-text {
+    font-weight: bold;
+    text-align: center;
 }

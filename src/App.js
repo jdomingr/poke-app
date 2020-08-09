@@ -25,15 +25,15 @@ function App() {
   }
   return (
     
-      <div className="container">
-        <h1>Bienvenido</h1>
+      <div className="container mt-5">
+        <h4 className="title-text">Find your favorite Pokémon!!!</h4>
         <hr />
         <form className="container-form" onSubmit = { handleSubmit }>
           <div className="form-group">
            <input type="text" className="form-control" name="name" value = { name } onChange={ handleInputChange } placeholder="Pokémon"/>
           </div>
           <button type="submit" className="btn btn-outline-primary">
-            Buscar 
+            Search
           </button>
         </form>
 
