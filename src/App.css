@@ -20,6 +20,14 @@
     margin: auto;
 }
 
+.container-error {
+    align-content: center;
+    background-color: red;
+    margin: 20px;
+    padding: 20px;
+    color: white;
+}
+
 .title-text {
     font-weight: bold;
     text-align: center;

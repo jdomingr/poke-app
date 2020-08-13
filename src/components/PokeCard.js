@@ -1,15 +1,15 @@
 import React from 'react'
 
 export const PokeCard = ( { pokemon } ) => {
-    console.log(pokemon)
+   
+    
     if(!pokemon){
         return null;
     }
     
     return (
         <div className="container-card animate__animated animate__fadeIn">
-            <div className="row">
-                <div className="col-6">
+            
                     <div className="card text-center">
                         <div className="card-header">
                             <span className="text-muted"> #{pokemon.id} {pokemon.name}</span> 
@@ -26,8 +26,7 @@ export const PokeCard = ( { pokemon } ) => {
                             </ul>
                         </div>
                     </div>
-                </div>
-            </div>
+              
         </div>
         
     )

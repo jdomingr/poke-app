@@ -3,12 +3,14 @@ import './App.css';
 import { fetchPokemon } from './api/fetchPokemon';
 import { PokeCard } from './components/PokeCard';
 import { SpinnerLoading } from './components/SpinnerLoading';
+import { ErrorMessage } from './components/ErrorMessage';
 
 function App() {
 
   const [name, setName] = useState('');
   const [pokemon, setPokemon] = useState('');
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
 
   const handleInputChange = ( { target } ) => {
     setName(target.value);
@@ -16,15 +18,24 @@ function App() {
 
   const handleSubmit = async(e) => {
     e.preventDefault();
+    setError('')
     setLoading(true);
-    const result = await fetchPokemon(name);
-    if(result){
-      setPokemon(result);
+    try{
+      const result = await fetchPokemon(name);
+      if(result){
+        setPokemon(result);
+        setLoading(false);
+      }
+    }catch(error){
       setLoading(false);
+      setError('Pokémon Not Found')
     }
-  }
-  return (
     
+    
+  }
+
+  return (
+
       <div className="container mt-5">
         <h4 className="title-text">Find your favorite Pokémon!!!</h4>
         <hr />
@@ -36,9 +47,9 @@ function App() {
             Search
           </button>
         </form>
-
+        { error !== '' && <ErrorMessage error = { error }/> }
         { loading && <SpinnerLoading />}
-        <PokeCard pokemon={pokemon}/>
+        { error === '' && <PokeCard pokemon={pokemon}/>}
 
       </div >
     
